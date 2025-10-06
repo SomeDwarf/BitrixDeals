@@ -1,0 +1,69 @@
+body {
+    font-family: Arial;
+    margin: 0px;
+    background-color: #f0fff0;
+    color: #1a1a1a;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #34a26d;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    margin: 10px 0;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    background-color: #95d5b2;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #74c69d;
+    border-color: #40916c;
+}
+
+.deals-table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.deals-table th, .deals-table td {
+    border: 1px solid #97b99c;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.deals-table th {
+    background-color: #66d19d;
+    font-weight: bold;
+}
+
+.deals-table tr:nth-child(even) {
+    background-color: #d8f3dc;
+}
+
+.deals-table tr:hover {
+    background-color: #c8e3cc;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}

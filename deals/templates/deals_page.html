@@ -1,0 +1,88 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Управление сделками
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>Управление сделками</h1>
+        <button onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="controls">
+        <form method="get" action="{% url 'generate_deals' %}">
+            <button type="submit">Сгенерировать 5 сделок</button>
+        </form>
+
+        <form method="get" action="">
+            <button type="submit">Обновить</button>
+        </form>
+
+        <button type="button" onclick="">Создать сделку</button>
+    </div>
+
+    {% if deals %}
+        <table class="deals-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Сумма</th>
+                    <th>Стадия</th>
+                    <th>Дата создания</th>
+                    <th>Опасность</th>
+                    <th>Высокий приоритет</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deal in deals %}
+                    <tr>
+                        <td>{{ deal.ID }}</td>
+                        <td>{{ deal.TITLE }}</td>
+                        <td>{{ deal.OPPORTUNITY }} {{ deal.CURRENCY_ID }}</td>
+                        <td>{{ deal.STAGE_NAME }}</td>
+                        <td class="date" data-iso="{{ deal.DATE_CREATE }}">{{ deal.DATE_CREATE }}</td>
+                        <td>{{ deal.DANGER_LEVEL }}</td>
+                        <td>{% if deal.HIGH_PRIORITY == '1' %}Да{% else %}Нет{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h3>А сделок нет...</h3>
+    {% endif %}
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+function formatIso(isoString) {
+    if (!isoString) return;
+
+    try {
+        const date = new Date(isoString);
+        const formatted = date.toLocaleString("ru-RU", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+        });
+        return formatted;
+    } catch (e) {
+        console.error("Ошибка преобразования даты: ", isoString, e);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".date").forEach(td => {
+        const isoString = td.dataset.iso;
+        td.textContent = formatIso(isoString);
+    });
+});
+</script>
+{% endblock %}

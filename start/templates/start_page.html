@@ -1,11 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Bitrix Deals</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>Главная</title>
 </head>
 <body>
-    <h1>Привет, {{ first_name }} {{ last_name }}.</h1>
+    <div class="header">
+        <h1>Привет, {{ first_name }} {{ last_name }}.</h1>
+    </div>
+    <button onclick="document.location='{% url 'deals'%}'">Приложение 1. Управление сделками</button>
 </body>
-<script src="//api.bitrix24.com/api/v1/"></script>
 </html>
