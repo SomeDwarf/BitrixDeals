@@ -61,6 +61,8 @@
 
 
 {% block scripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/deals_page.css' %}"/>
 <script>
 function formatIso(isoString) {
     if (!isoString) return;

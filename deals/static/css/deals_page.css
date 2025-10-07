@@ -1,0 +1,45 @@
+.deals-table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.deals-table th, .deals-table td {
+    border: 1px solid #97b99c;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.deals-table th {
+    background-color: #66d19d;
+    font-weight: bold;
+}
+
+.deals-table tr:nth-child(even) {
+    background-color: #d8f3dc;
+}
+
+.deals-table tr:hover {
+    background-color: #c8e3cc;
+}
+
+.amount-currency {
+    display: flex;
+    align-items: stretch;
+}
+
+.amount-currency input[type="number"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #97b99c;
+    border-radius: 6px 0 0 6px;
+}
+
+.amount-currency select {
+    box-sizing: border-box;
+    width: 4rem;
+    padding: 4px;
+    border: 1px solid #97b99c;
+    border-radius: 0 6px 6px 0;
+}
