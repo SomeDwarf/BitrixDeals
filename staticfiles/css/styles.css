@@ -67,3 +67,69 @@ button:hover {
     justify-content: flex-start;
     align-items: center;
 }
+
+dialog {
+    width: 400px;
+    max-width: 90%;
+    border: none;
+    border-radius: 8px;
+    background-color: #f6fff8;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(1px);
+}
+
+dialog h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+dialog label {
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+dialog input[type="text"],
+dialog input[type="number"],
+dialog select {
+    padding: 8px;
+    border: 1px solid #97b99c;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.amount-currency {
+    display: flex;
+    align-items: stretch;
+}
+
+.amount-currency input[type="number"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #97b99c;
+    border-radius: 6px 0 0 6px;
+}
+
+.amount-currency select {
+    box-sizing: border-box;
+    width: 4rem;
+    padding: 4px;
+    border: 1px solid #97b99c;
+    border-radius: 0 6px 6px 0;
+}

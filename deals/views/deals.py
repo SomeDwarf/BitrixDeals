@@ -24,7 +24,10 @@ def deals(request):
         deal['DANGER_LEVEL'] = deal.get(CUSTOM_FIELDS['DANGER_LEVEL'])
         deal['HIGH_PRIORITY'] = deal.get(CUSTOM_FIELDS['HIGH_PRIORITY'])
 
-    return render(request, 'deals_page.html', {'deals': deals})
+    return render(request, 'deals_page.html', {
+        'deals': deals,
+        'stage_options': stage_dict,
+    })
 
 @main_auth(on_cookies=True)
 def generate_deals(request):
@@ -36,5 +39,21 @@ def generate_deals(request):
         but.batch_api_call(methods)
     except Exception as e:
         print(e)
+
+    return redirect("deals")
+
+@main_auth(on_cookies=True)
+def create_deal(request):
+    but = request.bitrix_user_token
+    if request.method == "POST":
+        deal_fields = {
+            "TITLE": request.POST.get('TITLE'),
+            "STAGE_ID": request.POST.get('STAGE_ID'),
+            "OPPORTUNITY": request.POST.get('OPPORTUNITY'),
+            "CURRENCY_ID": request.POST.get('CURRENCY_ID'),
+            CUSTOM_FIELDS["DANGER_LEVEL"]: request.POST.get('DANGER_LEVEL'),
+            CUSTOM_FIELDS["HIGH_PRIORITY"]: request.POST.get('HIGH_PRIORITY'),
+        }
+        but.call_api_method('crm.deal.add', {'fields': deal_fields})
 
     return redirect("deals")

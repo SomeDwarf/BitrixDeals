@@ -13,15 +13,15 @@
 
 {% block content %}
     <div class="controls">
-        <form method="get" action="{% url 'generate_deals' %}">
-            <button type="submit">Сгенерировать 5 сделок</button>
-        </form>
-
         <form method="get" action="">
             <button type="submit">Обновить</button>
         </form>
 
-        <button type="button" onclick="">Создать сделку</button>
+        <form method="get" action="{% url 'generate_deals' %}">
+            <button type="submit">Сгенерировать 5 сделок</button>
+        </form>
+
+        <button type="button" onclick="openDealModal()">Создать сделку</button>
     </div>
 
     {% if deals %}
@@ -54,6 +54,9 @@
     {% else %}
         <h3>А сделок нет...</h3>
     {% endif %}
+
+    {% include "create_deal_dialog.html" %}
+
 {% endblock %}
 
 
@@ -79,6 +82,13 @@ function formatIso(isoString) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("createDealDialog");
+    const openBtn = document.querySelector("button[onclick='openDealModal()']");
+    const closeBtn = document.getElementById("closeModalBtn");
+
+    if (openBtn) openBtn.addEventListener("click", () => modal.showModal());
+    if (closeBtn) closeBtn.addEventListener("click", () => modal.close());
+
     document.querySelectorAll(".date").forEach(td => {
         const isoString = td.dataset.iso;
         td.textContent = formatIso(isoString);

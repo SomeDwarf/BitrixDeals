@@ -1,0 +1,38 @@
+<dialog id="createDealDialog">
+    <form method="post" action="{% url 'create_deal' %}">
+        <h2>Создать новую сделку</h2>
+
+        <label>Название:</label>
+        <input type="text" name="TITLE" required placeholder="Введите название">
+
+        <label>Стадия:</label>
+        <select name="STAGE_ID" required>
+            {% for value, label in stage_options.items %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Сумма:</label>
+        <div class="amount-currency">
+            <input type="number" name="OPPORTUNITY" required placeholder="Введите сумму" min="0" step="0.01">
+            <select name="CURRENCY_ID" required>
+                <option value="RUB">RUB</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+            </select>
+        </div>
+
+        <label>Опасность:</label>
+        <input type="text" name="DANGER_LEVEL" placeholder="Введите опасность">
+
+        <label>
+            <input type="checkbox" name="HIGH_PRIORITY" value="1">
+            Высокий приоритет
+        </label>
+
+        <div class="modal-buttons">
+            <button type="submit">Создать</button>
+            <button type="button" id="closeModalBtn">Отмена</button>
+        </div>
+    </form>
+</dialog>
