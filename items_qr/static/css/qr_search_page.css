@@ -1,0 +1,50 @@
+.search-container {
+    margin-left: 10px;
+    width: 500px;
+}
+
+#searchForm {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.autocomplete-list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:hover {
+    background-color: #c8e3cc;
+}
+
+.item-id {
+    color: #888;
+}
+
+.no-results {
+    padding: 8px 12px;
+    color: #888;
+    font-style: italic;
+}

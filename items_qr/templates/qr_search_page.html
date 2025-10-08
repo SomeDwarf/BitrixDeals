@@ -12,14 +12,30 @@
 {% endblock %}
 
 {% block content %}
-
-
-
+    <div class="search-container">
+        <form id="searchForm">
+            <input
+                type="text"
+                id="searchInput"
+                name="query"
+                placeholder="Поиск по ID или названию товара"
+                autocomplete="off"
+            >
+            <button type="submit">Поиск</button>
+        </form>
+        <ul id="autocompleteList" class="autocomplete-list"></ul>
+    </div>
+    {% include "generate_qr.html" %}
 {% endblock %}
 
 
 {% block scripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/qr_search_page.css' %}?v={{ timestamp }}"/>
 <script>
-
+    const autocompleteUrl = "{% url 'autocomplete_item' %}";
+    const findItemUrl = "{% url 'find_item' %}";
 </script>
+
+<script src="{% static 'js/qr_search_page.js' %}?v={{ timestamp }}"></script>
 {% endblock %}

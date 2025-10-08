@@ -1,0 +1,15 @@
+{% if item %}
+<div class="qr-block">
+    <h2>Выбранный товар</h2>
+    <div class="item-info">
+        <p><strong>ID:</strong> {{ item.id }}</p>
+        <p><strong>Название:</strong> {{ item.name }}</p>
+    </div>
+    <button id="generateQrBtn">Сгенерировать QR-код</button>
+</div>
+{% endif %}
+{% if error %}
+<div class="qr-block">
+    <p><strong>Возникла ошибка:</strong> {{ error }}</p>
+</div>
+{% endif %}
