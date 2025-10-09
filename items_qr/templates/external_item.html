@@ -1,0 +1,33 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    {{ product.name|default:"Карточка товара" }}
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <h1>{{ product.name|default:"Карточка товара" }}</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        {% if product.imageUrl %}
+        <div class="image-block">
+            <img src="{{ product.imageUrl }}" class="product-image">
+        </div>
+        {% endif %}
+        <div class="product-info">
+            <div class="info"><strong>Название:</strong> {{ product.name|default:"-" }}</div>
+            <div class="info"><strong>Семейство:</strong> {{ product.family|default:"-" }}</div>
+            <div class="info"><strong>Описание:</strong> {{ product.detailText|default:"-" }}</div>
+            <div class="info"><strong>Цена:</strong> {{ product.price|default:"-" }} {{ product.currency }}</div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/external_item.css' %}?v={{ timestamp }}"/>
+{% endblock %}

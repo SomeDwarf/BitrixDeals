@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("searchInput");
     const list = document.getElementById("autocompleteList");
+    const searchBtn = document.getElementById('searchBtn');
 
     let timeout = null;
 
@@ -53,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (query !== null) {
             url += `?q=${encodeURIComponent(query)}`;
         }
+
+        searchBtn.disabled = true;
+        searchBtn.textContent = 'Ищу...';
         window.location.href = url;
     }
 

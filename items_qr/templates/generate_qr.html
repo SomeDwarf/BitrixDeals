@@ -1,9 +1,9 @@
 {% if item %}
-<div class="qr-block">
+<div id="qrBlock" data-item-id="{{ item.id }}">
     <h2>Выбранный товар</h2>
     <div class="item-info">
-        <p><strong>ID:</strong> {{ item.id }}</p>
-        <p><strong>Название:</strong> {{ item.name }}</p>
+        <strong>ID:</strong> {{ item.id }}<br/>
+        <strong>Название:</strong> {{ item.name }}<br/>
     </div>
     <button id="generateQrBtn">Сгенерировать QR-код</button>
 </div>

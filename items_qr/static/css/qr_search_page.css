@@ -48,3 +48,14 @@
     color: #888;
     font-style: italic;
 }
+
+#qrBlock {
+    margin-left: 10px;
+}
+
+.qr-code {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 8px;
+}

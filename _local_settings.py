@@ -6,9 +6,11 @@ ALLOWED_HOSTS = ['*']
 from integration_utils.bitrix24.local_settings_class import LocalSettingsClass
 
 NGROK_URL = 'http://localhost:8000/'
+BITRIX_DOMAIN = "REPLACE"
+BITRIX_WEBHOOK_URL = "REPLACE"
 
 APP_SETTINGS = LocalSettingsClass(
-    portal_domain='REPLACE',
+    portal_domain=BITRIX_DOMAIN,
     app_domain='127.0.0.1:8000',
     app_name='BitrixDeals',
     salt='REPLACE',

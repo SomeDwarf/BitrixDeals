@@ -21,7 +21,7 @@
                 placeholder="Поиск по ID или названию товара"
                 autocomplete="off"
             >
-            <button type="submit">Поиск</button>
+            <button type="submit" id="searchBtn">Поиск</button>
         </form>
         <ul id="autocompleteList" class="autocomplete-list"></ul>
     </div>
@@ -35,7 +35,9 @@
 <script>
     const autocompleteUrl = "{% url 'autocomplete_item' %}";
     const findItemUrl = "{% url 'find_item' %}";
+    const generateQrUrl = "{% url 'generate_qr' %}";
 </script>
 
 <script src="{% static 'js/qr_search_page.js' %}?v={{ timestamp }}"></script>
+<script src="{% static 'js/generate_qr.js' %}?v={{ timestamp }}"></script>
 {% endblock %}
