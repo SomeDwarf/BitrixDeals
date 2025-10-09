@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'start',
     'deals',
     'items_qr',
+    'staff',
 ]
 
 MIDDLEWARE = [
