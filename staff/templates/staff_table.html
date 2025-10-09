@@ -14,12 +14,53 @@
 
 
 {% block content %}
-    <div>
-        hello
-    </div>
+<div class="employee-table-container">
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>Сотрудник</th>
+                <th>Должность</th>
+                <th>Отдел</th>
+                <th>Руководители</th>
+                <th>Число звонков</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+                <tr>
+                    <td class="employee-cell" data-user-id="{{ emp.id }}">
+                        <div class="employee-info">
+                            {% if emp.photo %}
+                                <img src="{{ emp.photo }}" class="employee-photo">
+                            {% else %}
+                                <div class="employee-photo placeholder"></div>
+                            {% endif %}
+                            <span class="employee-name">{{ emp.name }}</span>
+                        </div>
+                    </td>
+                    <td>{{ emp.position }}</td>
+                    <td>{{ emp.department }}</td>
+                    <td>
+                        {% for head in emp.heads %}
+                            <span class="head-name" data-user-id="{{ head.id }}">{{ head.full_name }}</span>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Нет данных о сотрудниках</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
 
 
 {% block scripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/staff_table.css' %}?v=2"/>
 
+<script src="{% static 'js/slider.js' %}"></script>
 {% endblock %}

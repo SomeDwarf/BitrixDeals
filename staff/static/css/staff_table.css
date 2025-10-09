@@ -1,0 +1,59 @@
+.employee-table {
+    margin: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.employee-table th, .employee-table td {
+    border: 1px solid #97b99c;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.employee-table th {
+    background-color: #66d19d;
+    font-weight: bold;
+}
+
+.employee-table tr:nth-child(even) {
+    background-color: #d8f3dc;
+}
+
+.employee-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.employee-cell {
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.employee-cell:hover {
+    background-color: #9d96b0;
+    cursor: pointer;
+}
+
+.employee-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+.employee-photo.placeholder {
+    border: none;
+}
+
+.head-name {
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.head-name:hover {
+    color: #491d76;
+    text-decoration: underline;
+    cursor: pointer;
+}
