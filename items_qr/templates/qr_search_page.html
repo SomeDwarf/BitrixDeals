@@ -31,13 +31,13 @@
 
 {% block scripts %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/qr_search_page.css' %}?v={{ timestamp }}"/>
+<link rel="stylesheet" href="{% static 'css/qr_search_page.css' %}"/>
 <script>
     const autocompleteUrl = "{% url 'autocomplete_item' %}";
     const findItemUrl = "{% url 'find_item' %}";
     const generateQrUrl = "{% url 'generate_qr' %}";
 </script>
 
-<script src="{% static 'js/qr_search_page.js' %}?v={{ timestamp }}"></script>
-<script src="{% static 'js/generate_qr.js' %}?v={{ timestamp }}"></script>
+<script src="{% static 'js/qr_search_page.js' %}"></script>
+<script src="{% static 'js/generate_qr.js' %}"></script>
 {% endblock %}

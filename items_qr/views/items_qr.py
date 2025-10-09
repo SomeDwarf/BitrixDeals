@@ -38,8 +38,9 @@ def find_item(request):
                     item = products[0]
         if item:
             context['item'] = item
+        else:
+            context['error'] = f"Товар не найден"
     except BitrixApiError as e:
         print(e)
-        context['error'] = e.json_response['error_description']
 
     return render(request, 'qr_search_page.html', context)
