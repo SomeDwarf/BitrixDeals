@@ -42,6 +42,8 @@ def table(request):
                 calls_count[call['PORTAL_USER_ID']] = 1
         for user in response_users:
             user["CALLS_COUNT"] = calls_count.get(user.get('ID'))
+        # Общее количество звонков
+        context['total_calls'] = len(response_calls)
     except BitrixApiError as e:
         return HttpResponseServerError(f"Ошибка BitrixApi: {e}")
 
