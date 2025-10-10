@@ -1,0 +1,26 @@
+{% extends "base_app.html" %}
+
+{% block title %}
+    Карта компаний
+{% endblock %}
+
+
+{% block header %}
+    <div class="header">
+        <h1>Карта компаний</h1>
+        <button onclick="document.location='{% url 'reload_start'%}'">Назад</button>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+hello
+{% endblock %}
+
+
+{% block scripts %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/staff_table.css' %}?v=2"/>
+
+<script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}

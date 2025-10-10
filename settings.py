@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'deals',
     'items_qr',
     'staff',
+    'map',
 ]
 
 MIDDLEWARE = [
