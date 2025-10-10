@@ -59,6 +59,7 @@ def collect_employees_by_department(employees, departments):
                 "department_id": dept.get("ID"),
                 "heads": get_heads_chain(dept_id, emp.get("ID"), dept_map, emp_map),
                 "photo": emp.get("PERSONAL_PHOTO", ""),
+                "calls": emp.get("CALLS_COUNT"),
             })
 
     # Сортировка по иерархии отделов

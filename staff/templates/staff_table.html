@@ -14,6 +14,14 @@
 
 
 {% block content %}
+<div class="controls">
+    <form method="get" action="">
+        <button type="submit">Обновить</button>
+    </form>
+    <form method="get" action="{% url 'generate_calls' %}">
+        <button type="submit">Сгенерировать 10 звонков</button>
+    </form>
+</div>
 <div class="employee-table-container">
     <table class="employee-table">
         <thead>
@@ -45,7 +53,7 @@
                             <span class="head-name" data-user-id="{{ head.id }}">{{ head.full_name }}</span>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                     </td>
-                    <td></td>
+                    <td>{{ emp.calls }}</td>
                 </tr>
             {% empty %}
                 <tr>
