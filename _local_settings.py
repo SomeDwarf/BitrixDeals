@@ -8,6 +8,7 @@ from integration_utils.bitrix24.local_settings_class import LocalSettingsClass
 NGROK_URL = 'http://localhost:8000/'
 BITRIX_DOMAIN = "REPLACE"
 BITRIX_WEBHOOK_URL = "REPLACE"
+YANDEX_MAP_KEY = "REPLACE"
 
 APP_SETTINGS = LocalSettingsClass(
     portal_domain=BITRIX_DOMAIN,
