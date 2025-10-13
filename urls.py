@@ -6,4 +6,5 @@ urlpatterns = [
     path('items_qr/', include('items_qr.urls')),
     path('staff/', include('staff.urls')),
     path('map/', include('map.urls')),
+    path('contacts/', include('contacts.urls')),
 ]
