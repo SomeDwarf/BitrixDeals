@@ -21,7 +21,7 @@ def show_map(request):
         companies_map = {c['ID']: c['TITLE'] for c in response_companies}
         # Получение адресов всех компаний
         response_addresses = but.call_list_method('crm.address.list', {
-            'select': ['ENTITY_ID', 'COUNTRY', 'PROVINCE', 'CITY', 'ADDRESS_1'],
+            'select': ['ENTITY_ID', 'COUNTRY', 'REGION', 'PROVINCE', 'CITY', 'ADDRESS_1'],
             'filter': {'@ENTITY_ID': list(companies_map.keys())}
         })
     except BitrixApiError as e:
@@ -39,6 +39,6 @@ def show_map(request):
 
     context = {
         'api_key': YANDEX_MAP_KEY,
-        'points': json.dumps(points),
+        'points': points,
     }
     return render(request, 'map_page.html', context)

@@ -22,8 +22,11 @@
 {% block scripts %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/map.css' %}"/>
+
+{{ points|json_script:"points-id" }}
 <script>
-    const points = {{ points|safe }};
+    const jsonDataElement = document.getElementById('points-id');
+    const points = JSON.parse(jsonDataElement.textContent);
     console.log(points);
 </script>
 
