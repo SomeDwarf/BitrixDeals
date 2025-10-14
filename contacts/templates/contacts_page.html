@@ -22,8 +22,28 @@
 
     <h3>Экспорт контактов</h3>
     <form action="{% url 'export_contacts' %}" method="get">
-        <button type="submit">Сохранить CSV</button>
-        <button type="submit">Сохранить XLSX</button>
+        <fieldset>
+            <legend>Поля для экспорта:</legend>
+            <label><input type="checkbox" name="select" value="ID" checked> ID</label><br>
+            <label><input type="checkbox" name="select" value="NAME" checked> Имя</label><br>
+            <label><input type="checkbox" name="select" value="LAST_NAME" checked> Фамилия</label><br>
+            <label><input type="checkbox" name="select" value="PHONE" checked> Телефон</label><br>
+            <label><input type="checkbox" name="select" value="EMAIL" checked> Email</label><br>
+            <label><input type="checkbox" name="select" value="COMPANY_TITLE" checked> Компания</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Фильтры:</legend>
+            <label>Название компании: <input type="text" name="COMPANY_TITLE"></label><br>
+            <label><input type="checkbox" name="HAS_EMAIL" value="Y"> Только с Email</label><br>
+            <label><input type="checkbox" name="HAS_PHONE" value="Y"> Только с телефоном</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Формат файла:</legend>
+            <button type="submit" name="ext" value=".csv">Сохранить CSV</button>
+            <button type="submit" name="ext" value=".xlsx">Сохранить XLSX</button>
+        </fieldset>
     </form>
 {% endblock %}
 

@@ -1,8 +1,8 @@
 import csv
 import os
-from io import TextIOWrapper, BytesIO
+from io import TextIOWrapper, BytesIO, StringIO
 
-from openpyxl import load_workbook
+from openpyxl import load_workbook, Workbook
 
 CRM_MULTIFIELD = {'PHONE', 'EMAIL', 'WEB', 'IM', 'LINK'}
 
@@ -103,3 +103,94 @@ def _parse_xlsx(file):
                 value = value.strip()
             row_data[header] = value or ""
         yield row_data
+
+
+def write_contacts(contacts, headers=None, ext='.csv'):
+    """
+    Универсальная функция экспорта контактов в файл, возвращает объект BytesIO.
+    Первая строка файла - заголовки.
+    """
+    writers = {
+        ".csv": _to_csv,
+        ".xlsx": _to_xlsx,
+    }
+
+    writer = writers.get(ext.lower())
+    if not writer:
+        raise ValueError(f"Неподдерживаемый формат файла: {ext}")
+
+    contacts = list(contacts)
+    if not contacts:
+        raise ValueError("Нет данных для записи")
+
+    if headers is None:
+        headers = list({key for c in contacts for key in c.keys()})
+
+    return writer(contacts, headers)
+
+
+def _to_multifield(value):
+    """Преобразует значения multifield в строку значений через запятую."""
+    if not value:
+        # Если нет значения
+        return ""
+    if isinstance(value, str):
+        # Если значение уже строка
+        return value
+    if isinstance(value, list):
+        parts = []
+        for item in value:
+            if not isinstance(item, dict):
+                continue
+            val = str(item.get("VALUE", "")).strip()
+            """ Преобразование с типом значения
+            val_type = item.get("VALUE_TYPE")
+            if val_type:
+                parts.append(f"{val_type}:{val}")
+            else:
+                parts.append(val)
+            """
+            parts.append(val)
+        return ",".join(parts)
+    return str(value)
+
+
+def _to_csv(contacts, headers, delimiter=";"):
+    buffer = StringIO()
+    writer = csv.writer(buffer, delimiter=delimiter)
+
+    writer.writerow(headers)
+
+    for contact in contacts:
+        row = []
+        for h in headers:
+            value = contact.get(h, "")
+            if h in CRM_MULTIFIELD:
+                value = _to_multifield(value)
+            row.append(value)
+        writer.writerow(row)
+
+    byte_buffer = BytesIO(buffer.getvalue().encode("utf-8"))
+    byte_buffer.seek(0)
+    return byte_buffer
+
+
+def _to_xlsx(contacts, headers):
+    wb = Workbook()
+    ws = wb.active
+
+    ws.append(headers)
+
+    for contact in contacts:
+        row = []
+        for h in headers:
+            value = contact.get(h, "")
+            if h in CRM_MULTIFIELD:
+                value = _to_multifield(value)
+            row.append(value)
+        ws.append(row)
+
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)
+    return output
