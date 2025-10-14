@@ -14,7 +14,17 @@
 
 
 {% block content %}
+    <h3>Импорт контактов</h3>
+    <form action="{% url 'import_contacts' %}" method="post" enctype="multipart/form-data">
+        <input type="file" name="import_file" accept=".csv, .xlsx, .xls"><br/>
+        <button type="submit">Импортировать</button>
+    </form>
 
+    <h3>Экспорт контактов</h3>
+    <form action="{% url 'export_contacts' %}" method="get">
+        <button type="submit">Сохранить CSV</button>
+        <button type="submit">Сохранить XLSX</button>
+    </form>
 {% endblock %}
 
 
