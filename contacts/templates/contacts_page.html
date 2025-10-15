@@ -19,6 +19,11 @@
         <input type="file" name="import_file" accept=".csv, .xlsx, .xls"><br/>
         <button type="submit">Импортировать</button>
     </form>
+    {% if import_stats %}
+        <span>Добавлено контактов: {{ import_stats.contact.added }}</span><br/>
+        <span>Обновлено контактов: {{ import_stats.contact.updated }}</span><br/>
+        <span>Добавлено компаний: {{ import_stats.company.added }}</span><br/>
+    {% endif %}
 
     <h3>Экспорт контактов</h3>
     <form action="{% url 'export_contacts' %}" method="get">

@@ -14,10 +14,12 @@ def contacts(request):
 @main_auth(on_cookies=True)
 def import_contacts(request):
     but = request.bitrix_user_token
+    context = {}
     if request.method == "POST" and request.FILES.get("import_file"):
         file = request.FILES["import_file"]
-        FileImporter(but).import_file(file)
-    return redirect("contacts")
+        stats = FileImporter(but).import_file(file)
+        context['import_stats'] = stats
+    return render(request, 'contacts_page.html', context)
 
 
 @main_auth(on_cookies=True)
